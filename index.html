@@ -1,164 +1,161 @@
 <!doctype html>
 <html>
+
 <head>
-	<title>The Heavy Metal Band Name Generator</title>
-	<link rel="stylesheet" href="http://current.bootstrapcdn.com/bootstrap-v204/css/bootstrap-combined.min.css" type="text/css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-	<style type="text/css">
-		.title h1 {
-			font-size: 50px;
-		}
-		.centered {
-			text-align: center;
-		}
+  <title>The Heavy Metal Band Name Generator</title>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <style type="text/css">
+    .title h1 {
+      font-size: 50px;
+    }
+    .centered {
+      text-align: center;
+    }
+    .row {
+      margin-top: 100px;
+    }
+    #formhere input {
+      height: 60px;
+      font-size: 30px;
+    }
+    #firstname {
+      text-align: right;
+    }
+    #lastname {
+      text-align: left;
+    }
+  </style>
+  <script type="text/javascript">
+    var first = [
+      'Rancid',
+      'Insane',
+      'Black',
+      'Iron',
+      'Holy',
+      'Rabid',
+      'Bloody',
+      'Satan\'s',
+      'Bastard',
+      'Forsaken',
+      'Hell\'s',
+      'Forbidden',
+      'Dark',
+      'Frantic',
+      'Devil\'s',
+      'Evil',
+      'Inner',
+      'Bleeding',
+      'Guilty',
+      'Witch\'s',
+      'Heavy',
+      'Illegal',
+      'Fallen',
+      'Sinister',
+      'Crazy',
+      'Troubled'
+    ];
 
-		.row {
-			margin-top: 100px;
-		}
+    var last = [
+      'Empire',
+      'Fury',
+      'Rage',
+      'Zombies',
+      'Sin',
+      'Warriors',
+      'Angels',
+      'Death',
+      'Anarchy',
+      'Henchmen',
+      'Kill',
+      'Vengeance',
+      'Tendencies',
+      'Magic',
+      'Soldier',
+      'Gods',
+      'Goblin',
+      'Spawn',
+      'Temple',
+      'Realm',
+      'Hate',
+      'Slaves',
+      'Thorn',
+      'Abyss',
+      'Fire',
+      'Secrets'
+    ];
 
-		#formhere input {
-			height: 60px;
-			font-size: 30px;
-		}
+    var a = 'abcdefghijklmnopqrstuvwxyz';
 
-		#firstname {
-			text-align: right;
-		}
+    function valid(name) {
+      var as = a.split('');
+      for (var i = 0; i < a.length; i++) {
+        if (as.indexOf(name.substring(0, 1)) < 0) {
+          return false;
+        }
+      }
+      return true;
+    }
 
-		#lastname {
-			text-align: left;
-		}
-	</style>
-	<script type="text/javascript">
-		var first = [
-			'Rancid',
-			'Insane',
-			'Black',
-			'Iron',
-			'Holy',
-			'Rabid',
-			'Bloody',
-			'Satan\'s',
-			'Bastard',
-			'Forsaken',
-			'Hell\'s',
-			'Forbidden',
-			'Dark',
-			'Frantic',
-			'Devil\'s',
-			'Evil',
-			'Inner',
-			'Bleeding',
-			'Guilty',
-			'Witch\'s',
-			'Heavy',
-			'Illegal',
-			'Fallen',
-			'Sinister',
-			'Crazy',
-			'Troubled'
-		];
+    function fix(name) {
+      return name.toLowerCase().trim();
+    }
 
-		var last = [
-			'Empire',
-			'Fury',
-			'Rage',
-			'Zombies',
-			'Sin',
-			'Warriors',
-			'Angels',
-			'Death',
-			'Anarchy',
-			'Henchmen',
-			'Kill',
-			'Vengeance',
-			'Tendencies',
-			'Magic',
-			'Soldier',
-			'Gods',
-			'Goblin',
-			'Spawn',
-			'Temple',
-			'Realm',
-			'Hate',
-			'Slaves',
-			'Thorn',
-			'Abyss',
-			'Fire',
-			'Secrets'
-		];
+    function generate(f, l) {
+      f = fix(f);
+      l = fix(l);
+      if (!valid(f) || !valid(l)) {
+        return false;
+      }
+      if ((f + ' ' + l) == 'tommy burnette') {
+        return 'November Solstice';
+      }
 
-		var a = 'abcdefghijklmnopqrstuvwxyz';
+      if ((f + ' ' + l) == 'seth lisle') {
+        return 'Crystal Seth';
+      }
+      return first[a.indexOf(f.substring(0, 1))] + ' ' + last[a.indexOf(l.substring(0, 1))];
+    }
 
-		function valid(name) {
-			var as = a.split('');
-			for (var i = 0; i < a.length; i++) {
-				if (as.indexOf(name.substring(0, 1)) < 0) {
-					return false;
-				}
-			}
-			return true;
-		}
+    $(function() {
+      $("#form").keyup(function(e) {
+        var firstName = $("#first").val();
+        var lastName = $("#last").val();
+        var name = generate(firstName, lastName);
+        if (!name) {
+          return;
+        }
+        $("#band").html(name);
+      });
 
-		function fix(name) {
-			return name.toLowerCase().trim();
-		}
-
-		function generate(f, l) {
-			f = fix(f);
-			l = fix(l);
-			if (!valid(f) || !valid(l)) {
-				return false;
-			}
-			if ((f + ' ' + l) == 'tommy burnette') {
-				return 'November Solstice';
-			}
-
-			if ((f + ' ' + l) == 'seth lisle') {
-				return 'Crystal Seth';
-			}
-			return first[a.indexOf(f.substring(0, 1))] + ' ' + last[a.indexOf(l.substring(0, 1))];
-		}
-
-		$(function() {
-			$("#form").keyup(function(e) {
-				var firstName = $("#first").val();
-				var lastName = $("#last").val();
-				var name = generate(firstName, lastName);
-				if (!name) {
-					return;
-				}
-				$("#band").html(name);
-			});
-
-			$("#first, #last").focus(function() {
-				$(this).val('');
-			});
-		});
-	</script>
+      $("#first, #last").focus(function() {
+        $(this).val('');
+      });
+    });
+  </script>
 </head>
+
 <body>
-	<div class="container centered">
-		<div class="row">
-			<div class="span12 title">
-				<h1 id="band">The Heavy Metal Band Name Generator</h1>
-			</div>
-		</div>
-		<div class="row" id="formhere">
-			<form id="form">
-				<div class="span6" id="firstname">
-					<input type="text" value="Your" id="first" />
-				</div>
-				<div class="span6" id="lastname">
-					<input type="text" value="Name" id="last" />
-				</div>
-			</form>
-		</div>
-		<div class="row">
-			<div class="span12">
-				<small><a href="http://9gag.com/gag/4337956">Original</a></small>
-			</div>
-		</div>
-	</div>
+  <div class="container centered">
+    <div class="row">
+      <div class="span12 title">
+        <h1 id="band">The Heavy Metal Band Name Generator</h1>
+      </div>
+    </div>
+    <div class="row" id="formhere">
+      <div class="col-md-6" id="firstname">
+        <input type="text" value="Your" id="first" />
+      </div>
+      <div class="col-md-6" id="lastname">
+        <input type="text" value="Name" id="last" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <h2><a href="http://9gag.com/gag/4337956">Original</a></h2>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
