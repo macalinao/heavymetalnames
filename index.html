@@ -118,17 +118,17 @@
     }
 
     $(function() {
-      $("#form").keyup(function(e) {
-        var firstName = $("#first").val();
-        var lastName = $("#last").val();
+      $(document).keyup(function(e) {
+        var firstName = $('#first').val();
+        var lastName = $('#last').val();
         var name = generate(firstName, lastName);
         if (!name) {
           return;
         }
-        $("#band").html(name);
+        $('#band').html(name);
       });
 
-      $("#first, #last").focus(function() {
+      $('#first, #last').focus(function() {
         $(this).val('');
       });
     });
