@@ -127,10 +127,6 @@
         }
         $("#band").html(name);
       });
-
-      $("#first, #last").focus(function() {
-        $(this).val('');
-      });
     });
   </script>
 </head>
@@ -144,10 +140,10 @@
     </div>
     <div class="row" id="formhere">
       <div class="col-md-6" id="firstname">
-        <input type="text" value="Your" id="first" />
+        <input type="text" placeholder="Your" id="first" />
       </div>
       <div class="col-md-6" id="lastname">
-        <input type="text" value="Name" id="last" />
+        <input type="text" placeholder="Name" id="last" />
       </div>
     </div>
     <div class="row">
